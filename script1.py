@@ -28,7 +28,7 @@ for tag in tags:
 for i in current:
     try:
         if(i.find('/')==0):
-            i=url+str(i[1:])
+            i=url[0:url.find('/')]+str(i)
             main.append(i)
         elif(i.find('http')==0):
             main.append(i)
@@ -49,7 +49,7 @@ for i in main:
             j=tag.get('href', None)
             try:
                 if(j.find('/')==0):
-                    j=str(i)+str(j[1:])
+                    j=i[0:.find('/')]+str(j)
                     final.add(j)
                 elif(j.find('http')==0):
                     final.add(j)
