@@ -21,13 +21,19 @@ main=[]
 final=set()
 final.add(url)
 for tag in tags:
-    current.append(tag.get('href', None))
+    try:
+        current.append(tag.get('href', None))
+    except:
+        continue
 for i in current:
-    if(i.find('/')==0):
-        i=url+str(i[1:])
-        main.append(i)
-    elif(i.find('http')==0):
-        main.append(i)
+    try:
+        if(i.find('/')==0):
+            i=url+str(i[1:])
+            main.append(i)
+        elif(i.find('http')==0):
+            main.append(i)
+    except:
+        continue
     
 # print(main)
 # looping through links present in main array
