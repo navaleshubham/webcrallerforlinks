@@ -2,6 +2,7 @@ import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import ssl
 import sys
+import re
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
@@ -28,12 +29,13 @@ for tag in tags:
 for i in current:
     try:
         if(i.find('/')==0):
-            i=url+str(i[1:])
+            i=url[0:url.find('/',8)]+str(i)
             main.append(i)
         elif(i.find('http')==0):
             main.append(i)
     except:
         continue
+# print(main)
     
 # print(main)
 # looping through links present in main array
@@ -49,11 +51,9 @@ for i in main:
             j=tag.get('href', None)
             try:
                 if(j.find('/')==0):
-                    j=str(i)+str(j[1:])
+                    j=i[0:i.find('/',8)]+str(j)
                     final.add(j)
                 elif(j.find('http')==0):
-                    final.add(j)
-                else:
                     final.add(j)
             except:continue
     except:continue
