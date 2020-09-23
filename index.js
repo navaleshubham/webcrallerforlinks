@@ -26,7 +26,7 @@ app.post('/url', (req, res) => {
         args: [url] //An argument which can be accessed in the script using sys.argv[1] 
     }; 
     PythonShell.run('script1.py', options, function (err, result){ 
-        if (err) return res.send(err); 
+        if (err) return res.render('web.ejs',{'data':['please check your url','your url seems buggy']}); 
         // console.log('result: ', result.toString()); 
         dataToSend = result.toString().replace('{','').replace('}','').split(', ')
         return res.render('web.ejs',{'data':dataToSend})
