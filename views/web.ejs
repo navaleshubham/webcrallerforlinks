@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCraller</title>
+</head>
+<body>
+    <form name="f1" method="post" action="/url" novalidate style="padding-top: 1em; display: flex; justify-content: center;"> 
+        <input type="text" name='urls' style="font-size: 16px;">
+        <span style="padding-right: 10px;"></span>
+        <button type='submit' style="font-size: 16px;">GET data</button>
+    </form>
+    <div>
+        <ol>
+           <% if(data){  %>
+            <%data.forEach(d=>{%>
+                <li><a href=<%=d.substring(1,d.length-1)%> target='_blank'><%=d.substring(1,d.length-1)%></li>
+            <%})%>
+            <%}%>
+        </ol>
+    </div>
+</body>
+<script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+</html>
